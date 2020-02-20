@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#f1f1f1"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRetryNoMessageError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_btn_retry"
+        android:fontFamily="@font/font_bold"
+        android:gravity="center"
+        android:text="@string/no_internet_screens_retry_btn_title"
+        android:textAllCaps="false"
+        android:textSize="@dimen/retry_font_size" />
+
+</FrameLayout>

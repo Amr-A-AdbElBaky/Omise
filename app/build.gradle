@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    sourceSets {
+        main.res.srcDirs += ['src/main/res-splash', 'src/main/res-charities', 'src/main/res-donations']
+    }
+
+
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.omise.tamboon"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        def getProperty = { b, k -> "\"${project.properties.get(b + '.' + k)}\"" }
+        def developmentProperties = { k -> getProperty('dev', k) }
+
+
+        debug{
+            buildConfigField "String", 'OMISE_PUBLIC_KEY', developmentProperties("OMISE_PKEY")
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+
+    implementation 'co.omise:omise-android:3.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+
+    // network
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    implementation "com.squareup.okhttp3:okhttp:3.12.0"
+
+    // dagger 2 for di
+    implementation 'com.google.dagger:dagger-android:2.24'
+    implementation 'com.google.dagger:dagger-android-support:2.24' // if you use the support libraries
+    kapt 'com.google.dagger:dagger-android-processor:2.24'
+    implementation "com.google.dagger:dagger:2.24"
+    kapt "com.google.dagger:dagger-compiler:2.24"
+
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+}
