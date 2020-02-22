@@ -5,6 +5,8 @@
     <string name="error_no_internet_connection">No network access</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="retry_now">Retry now</string>
+    <string name="label_done">Done</string>
+    <string name="label_success">Success</string>
 
 
 </resources>

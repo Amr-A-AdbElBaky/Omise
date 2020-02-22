@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorWhite"
+    android:layoutDirection="locale"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgToolbar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerInside"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"
+            android:textDirection="locale"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>
+</LinearLayout>

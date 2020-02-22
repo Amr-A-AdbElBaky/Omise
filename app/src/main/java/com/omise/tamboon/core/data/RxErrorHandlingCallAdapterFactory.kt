@@ -2,6 +2,7 @@ package com.omise.tamboon.core.data
 
 import com.omise.tamboon.core.data.exception.CustomException
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
@@ -39,9 +40,6 @@ class RxErrorHandlingCallAdapterFactory: CallAdapter.Factory() {
         override fun adapt(call: Call<R>): Any {
             return when (val result = _wrappedCallAdapter.adapt(call)) {
                 is Single<*> -> result.onErrorResumeNext{ throwable -> Single.error(asCustomException(throwable)) }
-
-   /*             is Observable<*> -> result.onErrorResumeNext { throwable -> Observable.error<CustomException>(asCustomException(throwable)) }*/
-
                 is Completable -> result.onErrorResumeNext{ throwable -> Completable.error(asCustomException(throwable)) }
                 else -> result
             }
@@ -51,9 +49,7 @@ class RxErrorHandlingCallAdapterFactory: CallAdapter.Factory() {
             // We had non-200 http error
             if (throwable is HttpException) {
                 val response = throwable.response()
-
                 return when {
-
                     throwable.code() == 492 ->
                         CustomException.userNotVerified( response )
                     throwable.code() == 401 ->
@@ -62,12 +58,10 @@ class RxErrorHandlingCallAdapterFactory: CallAdapter.Factory() {
                         CustomException.httpErrorWithObject( response)
                 }
             }
-
             // A network error happened
             if (throwable is IOException) {
                 return CustomException.networkError(throwable)
             }
-
             // We don't know what happened. We need to simply convert to an unknown error
             return CustomException.unexpectedError(throwable)
         }

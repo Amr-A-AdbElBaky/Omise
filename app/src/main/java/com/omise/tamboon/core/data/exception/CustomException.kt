@@ -7,7 +7,7 @@ import java.io.IOException
 class CustomException(override val message: String?, val kind: Kind) : RuntimeException(message) {
 
     companion object {
-
+        // this will return error message but when the error model is knoen
         fun httpErrorWithObject(response: Response<*>?): CustomException {
             var errorMessage: String? = null
             var responseString = ""
@@ -30,14 +30,12 @@ class CustomException(override val message: String?, val kind: Kind) : RuntimeEx
             return CustomException(errorMessage, kind = Kind.HTTP)
         }
 
-
         fun userNotVerified(response: Response<*>): CustomException {
             val message = response.code().toString() + " " + response.message()
             return CustomException(message = message, kind = Kind.USER_NOT_VERIFIED)
         }
 
         fun notAuthorized(response: Response<*>): CustomException {
-
             return CustomException("", Kind.NOT_AUTHORIZED)
         }
 

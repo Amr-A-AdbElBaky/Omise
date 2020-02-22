@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="style_edittext_donation_amount">
+        <item name="android:textColorHint">@color/button_text_pressed</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:background">@drawable/bg_grey_10dp_corners</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textDirection">locale</item>
+    </style>
+
+
+</resources>

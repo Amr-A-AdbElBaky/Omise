@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class DonationNavigationParam (
     var charityName :String,
+    var charityLogo:String,
     var userName :String ,
     var token :String
 ):Parcelable

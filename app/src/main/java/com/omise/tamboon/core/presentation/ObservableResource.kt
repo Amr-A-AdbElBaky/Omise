@@ -10,38 +10,10 @@ class ObservableResource<T> : ReplayLiveEvent<T>() {
     val error: SingleLiveEvent<CustomException> = ErrorLiveData()
     val loading: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun observe(
-        owner: LifecycleOwner,
-        successObserver: Observer<in T>,
-        loadingObserver: Observer<Boolean>? = null,
-        commonErrorObserver: Observer<in CustomException> = Observer { },
-        httpErrorConsumer: Observer<CustomException>? = null,
-        networkErrorConsumer: Observer<CustomException>? = null,
-        unExpectedErrorConsumer: Observer<CustomException>? = null
-    ) {
-        super.observe(owner, successObserver)
-        loadingObserver?.let { loading.observe(owner, it) }
-        (error as ErrorLiveData).observe(
-            owner,
-            commonErrorObserver,
-            httpErrorConsumer,
-            networkErrorConsumer,
-            unExpectedErrorConsumer
-        )
-    }
-
     override fun removeObservers(owner: LifecycleOwner) {
         super.removeObservers(owner)
         loading.removeObservers(owner)
         error.removeObservers(owner)
-    }
-
-    fun replayObservation() {
-        super.replay()
-    }
-
-    fun toggleObservation(keepObserving: Boolean) {
-        super.toggleObservationState(keepObserving)
     }
 
     fun observe(

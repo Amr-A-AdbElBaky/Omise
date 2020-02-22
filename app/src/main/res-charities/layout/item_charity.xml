@@ -1,64 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layoutDirection="locale"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="25dp"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="8dp"
+   >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:background="@drawable/bg_strok"
-        android:padding="8dp"
-        android:paddingStart="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layoutDirection="locale"
+        android:layout_margin="16dp">
+
+
+        <!--    <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/bg_strok"
+                android:padding="8dp"
+                android:paddingStart="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">-->
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCharityName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="16dp"
             android:textColor="@color/colorDoveGray"
             android:textDirection="locale"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCharity"
+            app:layout_constraintEnd_toStartOf="@id/btnDonate"
+            app:layout_constraintStart_toEndOf="@id/imgCharity"
+            app:layout_constraintTop_toTopOf="@+id/imgCharity"
             tools:text="Name" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnDonate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCharityName"
-            android:background="@color/colorOceanBlue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/bg_blue_10dp_corners"
             android:text="@string/label_donate"
-            android:textColor="@color/colorWhite"/>
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/font_bold"
+            android:clickable="true"
+            android:focusable="true"/>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCharity"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/colorDoveGray"
+            app:backgroundTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgCharity"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:civ_border_width="1dp"
-        app:civ_border_color="@color/colorDoveGray"
-        app:backgroundTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

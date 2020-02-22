@@ -39,7 +39,7 @@ class AppModule {
 
             .client(okHttpClient)
             .baseUrl("https://virtserver.swaggerhub.com/")
-             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+          //   .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

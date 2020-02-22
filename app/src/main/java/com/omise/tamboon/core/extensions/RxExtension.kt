@@ -36,6 +36,22 @@ fun <T, R> Single<List<T>>.publishListToObservableResource(res: ObservableResour
         })
 }
 
+fun <T, R> Single<T>.publishToObservableResource(res: ObservableResource<R>,
+                                                           onSuccess: ((data: R) -> Unit)? = null,
+                                                           onError: ((data: Throwable) -> Unit)? = null,
+                                                           mapper: (T) -> R = noMapper(),
+                                                           executor: ThreadExecutor = JobExecutor(),
+                                                           postExecutor: PostExecutionThread = UIThread()): Disposable {
+    res.loading.value = true
+    return this.map(mapper).applyAsyncSchedulers(Schedulers.from(executor), postExecutor).subscribe({
+            onSuccess(res, it)
+            onSuccess?.invoke(it)
+        }, {
+            Log.d("Error", "onError() called wit $it")
+            onError(it, res, onError)
+        })
+}
+
 
 fun Disposable?.addTo(composite: CompositeDisposable): Unit {
     if (this != null)

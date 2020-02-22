@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omise.tamboon.R
 import com.omise.tamboon.core.extensions.getInflatedView
 import com.omise.tamboon.core.extensions.loadImage
-import com.omise.tamboon.core.misc.OneParamFunction
+import com.omise.tamboon.core.presentation.SingleLiveEvent
 import com.omise.tamboon.features.charities.domain.entity.CharityEntity
 import kotlinx.android.synthetic.main.item_charity.view.*
 
 class CharitiesAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var charitiesList = mutableListOf<CharityEntity>()
-    var onDonateClick :OneParamFunction<CharityEntity>? = null
+    val onDonateClick by lazy {  SingleLiveEvent<CharityEntity>()}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return   CharitiesViewHolder(parent.getInflatedView(R.layout.item_charity))
@@ -36,7 +36,7 @@ class CharitiesAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 imgCharity.loadImage(charityEntity.logoUrl)
                 tvCharityName.text = charityEntity.name
                 btnDonate.setOnClickListener {
-                    onDonateClick?.invoke(charityEntity)
+                    onDonateClick.value =charityEntity
                 }
 
             }
