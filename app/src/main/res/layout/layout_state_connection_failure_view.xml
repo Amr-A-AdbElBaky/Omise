@@ -45,6 +45,7 @@
         android:textColor="@color/colorDoveGray"
         android:textSize="@dimen/retry_font_size"
         android:fontFamily="@font/font_bold"
+        android:drawableEnd="@drawable/ic_retry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoConnection" />

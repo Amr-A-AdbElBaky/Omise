@@ -29,22 +29,6 @@ fun ImageView.loadImage(url: String, placeholder: Int? = null, trans: MultiTrans
 
     loadImageOptions(glideApp = glideApp , placeholder = placeholder , trans = trans , listener = listener)
 }
-fun ImageView.loadImageBlur(url: String, placeholder: Int? = null, trans: MultiTransformation<Bitmap>? = null, listener: MutableLiveData<Bitmap?>? = null) {
-    val glideApp = GlideApp.with(context)
-            .asBitmap()
-            .load(url)
-
-    loadImageOptions(glideApp = glideApp , placeholder = placeholder , trans = trans , listener = listener)
-}
-
-fun ImageView.bitmapTransformation(bitmap: Bitmap, trans: MultiTransformation<Bitmap>, listener: MutableLiveData<Bitmap?>? = null) {
-    val glideApp = GlideApp.with(context)
-            .asBitmap()
-            .load(bitmap).apply(RequestOptions.bitmapTransform(trans))
-
-    loadImageOptions(glideApp , trans = trans , listener = listener)
-}
-
 
 private fun ImageView.loadImageOptions(glideApp: GlideRequest<Bitmap>, placeholder: Int? = null, trans: MultiTransformation<Bitmap>? = null, listener: MutableLiveData<Bitmap?>? = null){
     placeholder?.let {
@@ -70,6 +54,3 @@ private fun ImageView.loadImageOptions(glideApp: GlideRequest<Bitmap>, placehold
 
         }).submit()
 }
-
-
-

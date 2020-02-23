@@ -2,8 +2,8 @@
 <resources>
 
     <string name="label_charities_title">Charities</string>
-    <string name="label_charities_empty_msg">There are no charities</string>
+    <string name="msg_charities_empty">There are no charities</string>
     <string name="label_donate">Donate</string>
-    <string name="failed_retrieve_card_msg">Failed to retrieve  credit card info</string>
+    <string name="msg_failed_retrieve_card">Failed to retrieve  credit card info</string>
 
 </resources>

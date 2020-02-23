@@ -6,7 +6,7 @@ import com.omise.tamboon.core.extensions.publishToObservableResource
 import com.omise.tamboon.core.presentation.ObservableResource
 import com.omise.tamboon.features.donations.domain.entity.DonationEntity
 import com.omise.tamboon.features.donations.domain.interactor.DonateUseCase
-import com.omise.tamboon.features.donations.presentation.param.DonationRequestParam
+import com.omise.tamboon.features.donations.domain.entity.param.DonationRequestParam
 import javax.inject.Inject
 
 class DonationViewModel @Inject constructor(

@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/bg_blue_10dp_corners"
+        android:background="@drawable/shape_blue_10dp_corners"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
         android:padding="10dp"

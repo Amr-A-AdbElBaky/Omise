@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:background="@drawable/bg_white_10dp_corners"
+                android:background="@drawable/shape_white_10dp_corners"
                 android:orientation="vertical"
                 android:padding="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/pbPay"
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_bold"
                     android:text="@string/label_name_on_card"
-                    android:textColor="@color/button_text_pressed"
+                    android:textColor="@color/colorGrey4D"
                     android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_grey_10dp_corners"
+                    android:background="@drawable/shape_grey_10dp_corners"
                     android:gravity="start|center_vertical"
                     android:paddingStart="10dp"
                     android:textDirection="locale"
@@ -76,7 +76,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/font_bold"
                     android:text="@string/label_donation_amount"
-                    android:textColor="@color/button_text_pressed"
+                    android:textColor="@color/colorGrey4D"
                     android:textSize="14sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -90,15 +90,16 @@
 
 
             </LinearLayout>
+
     <com.omise.tamboon.core.presentation.view.custom.ProgressButton
         android:id="@+id/pbPay"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="32dp"
-        android:background="@drawable/bg_blue_10dp_corners"
+        android:background="@drawable/shape_blue_10dp_corners"
         app:text_color="@color/colorWhite"
-        app:progress_text="@string/pay"
+        app:progress_text="@string/label_pay"
         app:progress_size="70"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="32dp"

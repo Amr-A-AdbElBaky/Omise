@@ -4,7 +4,7 @@ package  com.omise.tamboon.core.extensions
 import android.util.Log
 import com.omise.tamboon.base.domain.executors.PostExecutionThread
 import com.omise.tamboon.core.data.JobExecutor
-import com.omise.tamboon.core.data.ThreadExecutor
+import com.omise.tamboon.base.domain.executors.ThreadExecutor
 import com.omise.tamboon.core.data.UIThread
 import com.omise.tamboon.core.data.exception.CustomException
 import com.omise.tamboon.core.presentation.ObservableResource
@@ -37,11 +37,11 @@ fun <T, R> Single<List<T>>.publishListToObservableResource(res: ObservableResour
 }
 
 fun <T, R> Single<T>.publishToObservableResource(res: ObservableResource<R>,
-                                                           onSuccess: ((data: R) -> Unit)? = null,
-                                                           onError: ((data: Throwable) -> Unit)? = null,
-                                                           mapper: (T) -> R = noMapper(),
-                                                           executor: ThreadExecutor = JobExecutor(),
-                                                           postExecutor: PostExecutionThread = UIThread()): Disposable {
+                                                 onSuccess: ((data: R) -> Unit)? = null,
+                                                 onError: ((data: Throwable) -> Unit)? = null,
+                                                 mapper: (T) -> R = noMapper(),
+                                                 executor: ThreadExecutor = JobExecutor(),
+                                                 postExecutor: PostExecutionThread = UIThread()): Disposable {
     res.loading.value = true
     return this.map(mapper).applyAsyncSchedulers(Schedulers.from(executor), postExecutor).subscribe({
             onSuccess(res, it)

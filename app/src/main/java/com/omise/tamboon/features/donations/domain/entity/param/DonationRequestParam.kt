@@ -1,4 +1,4 @@
-package com.omise.tamboon.features.donations.presentation.param
+package com.omise.tamboon.features.donations.domain.entity.param
 
 data class DonationRequestParam(
     var name: String,

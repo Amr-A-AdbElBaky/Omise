@@ -15,7 +15,7 @@ fun Activity.closeKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 }
 
-fun AppCompatActivity.initDefaultToolBar(title: String? = null, enableBack: Boolean) {
+fun AppCompatActivity.initToolBar(title: String? = null, enableBack: Boolean) {
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayShowTitleEnabled(false)
     supportActionBar?.setDefaultDisplayHomeAsUpEnabled(false)
@@ -59,16 +59,14 @@ fun AppCompatActivity.createAlertDialog(
     dialogView.tvMessage.text = message
     dialogView.tvOk.text = positiveText
     dialogView.tvOk.setOnClickListener {
-        positiveButtonListener?.let {
-            it.invoke(dialog!!)
-        }?:run {
+        positiveButtonListener?.invoke(dialog!!) ?:run {
             dialog?.dismiss()
         }
     }
 
     dialog = alertBuilder.create()
-    dialog?.setCancelable(isCancelable)
-    dialog.window!!.setBackgroundDrawableResource(R.drawable.bg_white_32dp_corners)
+    dialog.setCancelable(isCancelable)
+    dialog.window!!.setBackgroundDrawableResource(R.drawable.shape_white_32dp_corners)
     dialog.show()
 }
 

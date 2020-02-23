@@ -12,12 +12,11 @@ import co.omise.android.models.Token
 import co.omise.android.ui.CreditCardActivity
 import co.omise.android.ui.OmiseActivity
 import co.omise.android.ui.OmiseActivity.Companion.EXTRA_TOKEN_OBJECT
-import com.google.android.material.snackbar.Snackbar
 import com.omise.tamboon.BuildConfig.OMISE_PUBLIC_KEY
 import com.omise.tamboon.R
 import com.omise.tamboon.core.di.module.ViewModelFactory
 import com.omise.tamboon.core.extensions.getErrorSnack
-import com.omise.tamboon.core.extensions.initDefaultToolBar
+import com.omise.tamboon.core.extensions.initToolBar
 import com.omise.tamboon.features.charities.domain.entity.CharityEntity
 import com.omise.tamboon.features.charities.presentation.view.adapter.CharitiesAdapter
 import com.omise.tamboon.features.charities.presentation.viewmodel.CharitiesViewModel
@@ -55,14 +54,14 @@ class CharitiesActivity : DaggerAppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_CANCELED) {
-            mRootView.getErrorSnack(message= getString(R.string.failed_retrieve_card_msg)).show()
+            mRootView.getErrorSnack(message= getString(R.string.msg_failed_retrieve_card)).show()
             return
         }
 
         if (requestCode == REQUEST_CC) {
             val token = data?.getParcelableExtra<Token>(EXTRA_TOKEN_OBJECT)
             if (token == null) {
-                mRootView.getErrorSnack(message = getString(R.string.failed_retrieve_card_msg)).show()
+                mRootView.getErrorSnack(message = getString(R.string.msg_failed_retrieve_card)).show()
             } else {
                 with(mCharitiesAdapter.onDonateClick.value!!) {
                     DonationActivity.startMe(
@@ -70,7 +69,7 @@ class CharitiesActivity : DaggerAppCompatActivity() {
                         DonationNavigationParam(
                             charityName = name,
                             charityLogo = logoUrl,
-                            token = token?.id!!,
+                            token = token.id!!,
                             userName = token.card?.name!!
                         )
                     )
@@ -81,7 +80,7 @@ class CharitiesActivity : DaggerAppCompatActivity() {
     }
 
     private fun initViews() {
-        initDefaultToolBar(getString(R.string.label_charities_title), false)
+        initToolBar(getString(R.string.label_charities_title), false)
         with(rvCharities) {
             layoutManager = LinearLayoutManager(this@CharitiesActivity)
             adapter = mCharitiesAdapter
@@ -93,15 +92,11 @@ class CharitiesActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun startOmiseCreditCardActivity() {
-        val intent = Intent(this, CreditCardActivity::class.java)
-        intent.putExtra(OmiseActivity.EXTRA_PKEY, OMISE_PUBLIC_KEY)
-        startActivityForResult(intent, REQUEST_CC)
-    }
+
 
     private fun initViewModelObservations() {
         mCharitiesViewModel.charitiesResource.observe(this,
-            doOnSuccess = { setSuccessLayout(it) },
+            doOnSuccess = { bindSuccessLayout(it) },
             doOnLoading = { svCharities.setLoading() },
             doOnNetworkError = {
                 svCharities.setNetworkError(retryAction = {
@@ -117,16 +112,21 @@ class CharitiesActivity : DaggerAppCompatActivity() {
 
     private fun requestCharitiesList() = mCharitiesViewModel.requestCharities()
 
-    private fun setSuccessLayout(charitiesList: List<CharityEntity>) {
+    private fun bindSuccessLayout(charitiesList: List<CharityEntity>) {
         svCharities.setContent()
         if (charitiesList.isEmpty())
-            svCharities.setEmpty(getString(R.string.label_charities_empty_msg))
+            svCharities.setEmpty(getString(R.string.msg_charities_empty))
         else
             mCharitiesAdapter.addItems(charitiesList as MutableList<CharityEntity>)
 
 
     }
 
+    private fun startOmiseCreditCardActivity() {
+        val intent = Intent(this, CreditCardActivity::class.java)
+        intent.putExtra(OmiseActivity.EXTRA_PKEY, OMISE_PUBLIC_KEY)
+        startActivityForResult(intent, REQUEST_CC)
+    }
 
     companion object {
         private const val REQUEST_CC = 100

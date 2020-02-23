@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.ColorRes
-import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
 import com.omise.tamboon.R
 
@@ -51,14 +50,5 @@ fun View.getSnack(message: String, @ColorRes backgroundColor: Int = R.color.colo
     return snack
 }
 
-fun Snackbar.action(@StringRes actionRes: Int, color: Int? = null, listener: (View) -> Unit) {
-    action(view.resources.getString(actionRes), color, listener)
-}
-
-
-fun Snackbar.action(action: String, color: Int? = null, listener: (View) -> Unit) {
-    setAction(action, listener)
-    color?.let { setActionTextColor(color) }
-}
 
 

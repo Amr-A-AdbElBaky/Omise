@@ -3,9 +3,9 @@
     <string name="label_name_on_card">Name on card</string>
     <string name="label_donation_amount">Donation amount:</string>
     <string name="label_amount_in_thb">Amount in THB</string>
-    <string name="card_info_success_msg">Credit card added successfully</string>
-    <string name="pay">Pay</string>
-    <string name="label_donation_success_msg">You donated with %1$s THB successfully</string>
+    <string name="msg_card_info_success">Credit card added successfully</string>
+    <string name="label_pay">Pay</string>
+    <string name="msg_donation_success">You donated with %1$s THB successfully</string>
 
 
 </resources>

@@ -27,18 +27,15 @@ class ProgressButton @JvmOverloads constructor(
 
     fun getLabelTextView(): TextView? = tvProgressButton
 
+
     private fun init(set: AttributeSet?) {
         val ta = context.obtainStyledAttributes(set, R.styleable.ProgressButton)
 
         val progressText = ta.getString(R.styleable.ProgressButton_progress_text)
-        val clProgressButtonBackground = ta.getColor(R.styleable.ProgressButton_background_color, ContextCompat.getColor(context, R.color.colorOceanBlue))
-        val pgProgressColor = ta.getColor(R.styleable.ProgressButton_progress_color, ContextCompat.getColor(context, R.color.colorWhite))
         val tvProgressButtonTextColor = ta.getColor(R.styleable.ProgressButton_text_color, ContextCompat.getColor(context, R.color.colorWhite))
         val progressSize = ta.getInt(R.styleable.ProgressButton_progress_size, 25)
         val tvDrawable = ta.getDrawable(R.styleable.ProgressButton_progress_icon)
 
-
-      //  clProgressButton.setBackgroundColor( clProgressButtonBackground)
         with(pgProgressButton){
             layoutParams.width = progressSize
             layoutParams.height = progressSize

@@ -1,7 +1,7 @@
-package com.omise.tamboon.features.charities.data.source
+package com.omise.tamboon.features.charities.data.source.remote
 
 import com.omise.tamboon.features.charities.data.model.Charity
-import com.omise.tamboon.features.charities.data.source.api.CharitiesApis
+import com.omise.tamboon.features.charities.data.source.remote.network.CharitiesApis
 import io.reactivex.Single
 import javax.inject.Inject
 

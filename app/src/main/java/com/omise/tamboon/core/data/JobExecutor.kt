@@ -1,5 +1,7 @@
 package com.omise.tamboon.core.data
 
+import com.omise.tamboon.base.domain.executors.ExecutionThread
+import com.omise.tamboon.base.domain.executors.ThreadExecutor
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.LinkedBlockingQueue
@@ -10,7 +12,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class JobExecutor @Inject constructor(): ThreadExecutor, ExecutionThread {
+open class JobExecutor @Inject constructor(): ThreadExecutor,
+    ExecutionThread {
     override val scheduler: Scheduler by lazy {
         Schedulers.from(this)
     }

@@ -6,8 +6,8 @@ import com.omise.tamboon.features.charities.domain.repository.CharitiesRepositor
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetCharitiesListUseCase @Inject constructor(private val charitiesRepository: CharitiesRepository) :SingleUseCase<Unit , List<CharityEntity>>() {
-    override fun build(params: Unit): Single<List<CharityEntity>> {
-        return charitiesRepository.getCharitiesList()
-    }
+class GetCharitiesUseCase @Inject constructor(private val charitiesRepository: CharitiesRepository) :SingleUseCase<Unit , List<CharityEntity>>() {
+
+    override fun build(params: Unit)= charitiesRepository.getCharitiesList()
+
 }

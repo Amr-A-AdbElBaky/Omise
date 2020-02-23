@@ -33,7 +33,7 @@ class CharitiesAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(charityEntity: CharityEntity) {
 
             with(charityItemView){
-                imgCharity.loadImage(charityEntity.logoUrl)
+                imgCharity.loadImage(charityEntity.logoUrl , placeholder = R.drawable.ic_placeholder)
                 tvCharityName.text = charityEntity.name
                 btnDonate.setOnClickListener {
                     onDonateClick.value =charityEntity

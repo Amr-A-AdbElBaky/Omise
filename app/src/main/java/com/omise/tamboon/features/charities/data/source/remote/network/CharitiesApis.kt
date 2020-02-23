@@ -1,4 +1,4 @@
-package com.omise.tamboon.features.charities.data.source.api
+package com.omise.tamboon.features.charities.data.source.remote.network
 
 import com.omise.tamboon.features.charities.data.model.CharitiesResponse
 import io.reactivex.Single

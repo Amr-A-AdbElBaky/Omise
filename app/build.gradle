@@ -31,9 +31,11 @@ android {
 
         debug{
             buildConfigField "String", 'OMISE_PUBLIC_KEY', developmentProperties("OMISE_PKEY")
+            buildConfigField "String", 'TAMBOON_BASE_URL', developmentProperties("tamboonBaseUrl")
         }
 
         release {
+            initWith buildTypes.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

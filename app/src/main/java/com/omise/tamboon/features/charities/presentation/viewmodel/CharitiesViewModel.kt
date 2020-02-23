@@ -5,17 +5,17 @@ import com.omise.tamboon.core.extensions.addTo
 import com.omise.tamboon.core.extensions.publishListToObservableResource
 import com.omise.tamboon.core.presentation.ObservableResource
 import com.omise.tamboon.features.charities.domain.entity.CharityEntity
-import com.omise.tamboon.features.charities.domain.interactor.GetCharitiesListUseCase
+import com.omise.tamboon.features.charities.domain.interactor.GetCharitiesUseCase
 import javax.inject.Inject
 
 class CharitiesViewModel @Inject constructor(
-    private val getCharitiesListUseCase: GetCharitiesListUseCase
+    private val getCharitiesUseCase: GetCharitiesUseCase
 ) :BaseViewModel() {
 
     val charitiesResource = ObservableResource<List<CharityEntity>>()
 
     fun requestCharities(){
-        getCharitiesListUseCase.build(Unit).publishListToObservableResource(charitiesResource)
+        getCharitiesUseCase.build(Unit).publishListToObservableResource(charitiesResource)
             .addTo(compositeDisposable)
 
     }

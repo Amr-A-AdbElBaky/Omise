@@ -10,7 +10,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import com.omise.tamboon.R
-import com.omise.tamboon.core.extensions.setVectorDrawableEnd
 import kotlinx.android.synthetic.main.layout_state_connection_failure_view.view.*
 import kotlinx.android.synthetic.main.layout_state_empty_view.view.*
 import kotlinx.android.synthetic.main.layout_state_unexpected_failure.view.*
@@ -45,7 +44,6 @@ open class StateView @JvmOverloads constructor(
 
             stateView.btnRetryConnection?.text = retryMessage
             stateView.btnRetryConnection?.setTextColor(ContextCompat.getColor(context,textColor))
-            stateView.btnRetryConnection.setVectorDrawableEnd(retryIcon)
             stateView.btnRetryConnection?.setBackgroundResource(retryBackground)
             stateView.btnRetryConnection?.setOnClickListener { retryAction?.invoke() }
             return@showState stateView
@@ -61,7 +59,6 @@ open class StateView @JvmOverloads constructor(
             val stateView = inflate(context, R.layout.layout_state_unexpected_failure, null)
             stateView.tvUnexpected?.text = message
             stateView.btnRetryUnexpected?.text = retryMessage
-            stateView.btnRetryUnexpected?.setVectorDrawableEnd(retryIcon)
             stateView.btnRetryUnexpected?.setBackgroundResource(retryBackground)
             stateView.btnRetryUnexpected?.setOnClickListener { retryAction?.invoke() }
             return@showState stateView

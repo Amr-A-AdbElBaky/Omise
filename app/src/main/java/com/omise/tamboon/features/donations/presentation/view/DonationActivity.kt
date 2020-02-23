@@ -11,7 +11,7 @@ import com.omise.tamboon.core.di.module.ViewModelFactory
 import com.omise.tamboon.core.extensions.*
 import com.omise.tamboon.features.donations.domain.entity.DonationEntity
 import com.omise.tamboon.features.donations.presentation.param.DonationNavigationParam
-import com.omise.tamboon.features.donations.presentation.param.DonationRequestParam
+import com.omise.tamboon.features.donations.domain.entity.param.DonationRequestParam
 import com.omise.tamboon.features.donations.presentation.viewmodel.DonationViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_donation.*
@@ -28,8 +28,7 @@ class DonationActivity : DaggerAppCompatActivity() {
     }
 
     private val mRootView by lazy {
-        (this
-            .findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+        (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
     }
 
     private val donationNavigationParam by lazy {
@@ -54,13 +53,16 @@ class DonationActivity : DaggerAppCompatActivity() {
                         and this is totally wrong.
                         so i have to deal with this to show the actual status to end user
                         */
-                setSuccessOrFailedLayout(it)
+                bindSuccessOrFailedLayout(it)
             },
             doOnLoading = {
                 pbPay.startProgress()
                 edtDonationAmount.disable()
             },
             doOnError = {
+                /*
+                * here should handle error with messages from api
+                * but api error data object is not found in documentation */
                 //   mRootView.getErrorSnack(messageRes = it.message!!).show()
             },
             doOnNetworkError = {
@@ -76,7 +78,7 @@ class DonationActivity : DaggerAppCompatActivity() {
 
     }
 
-    private fun setSuccessOrFailedLayout(donationEntity: DonationEntity) {
+    private fun bindSuccessOrFailedLayout(donationEntity: DonationEntity) {
         with(donationEntity) {
             if (errorMessage.isNullOrEmpty())
                 showSuccessDialog()
@@ -88,8 +90,8 @@ class DonationActivity : DaggerAppCompatActivity() {
     private fun showSuccessDialog() {
         createAlertDialog(
             title = getString(R.string.label_success),
-            message = getString(R.string.label_donation_success_msg , edtDonationAmount.getStringText()),
-            icon = R.drawable.ic_app,
+            message = getString(R.string.msg_donation_success , edtDonationAmount.getStringText()),
+            icon = R.drawable.ic_logo,
             positiveButtonListener = {
                 it.dismiss()
                 finish()
@@ -98,7 +100,7 @@ class DonationActivity : DaggerAppCompatActivity() {
     }
 
     private fun showSuccessSnackForCardInfo() {
-        mRootView.getSuccessSnack(message = getString(R.string.card_info_success_msg)).show()
+        mRootView.getSuccessSnack(message = getString(R.string.msg_card_info_success)).show()
     }
 
     private fun initActions() {
@@ -106,10 +108,10 @@ class DonationActivity : DaggerAppCompatActivity() {
         edtDonationAmount.onChange {
             if (isValidDonationValue()) {
                 pbPay.enable()
-                pbPay.label = getString(R.string.pay) + " $it THB"
+                pbPay.label = getString(R.string.label_pay) + " $it THB"
             } else {
                 pbPay.disable()
-                pbPay.label = getString(R.string.pay)
+                pbPay.label = getString(R.string.label_pay)
             }
         }
 
@@ -124,7 +126,7 @@ class DonationActivity : DaggerAppCompatActivity() {
 
     private fun donate() {
         closeKeyboard()
-        if (isValidDonationValue()) {
+        if (isValidDonationValue() && ! pbPay.isLoading() ) {
             mDonationViewModel.donate(
                 DonationRequestParam(
                     name = donationNavigationParam.userName,
@@ -141,7 +143,7 @@ class DonationActivity : DaggerAppCompatActivity() {
         pbPay.disable()
 
         with(donationNavigationParam) {
-            this@DonationActivity.initDefaultToolBar(charityName, true)
+            this@DonationActivity.initToolBar(charityName, true)
             imgCharity.loadImage(charityLogo)
             tvUserName.text = userName
         }

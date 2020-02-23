@@ -3,8 +3,8 @@ package com.omise.tamboon.features.donations.di
 import androidx.lifecycle.ViewModel
 import com.omise.tamboon.core.di.ViewModelKey
 import com.omise.tamboon.features.donations.data.repository.DonationRepositoryImp
-import com.omise.tamboon.features.donations.data.source.DonationRemoteDS
-import com.omise.tamboon.features.donations.data.source.api.DonationApis
+import com.omise.tamboon.features.donations.data.source.remote.DonationRemoteDS
+import com.omise.tamboon.features.donations.data.source.remote.network.DonationApis
 import com.omise.tamboon.features.donations.domain.repository.DonationRepository
 import com.omise.tamboon.features.donations.presentation.viewmodel.DonationViewModel
 import dagger.Binds
@@ -17,7 +17,8 @@ import retrofit2.Retrofit
 class DonationDataModule {
     @Provides
     fun provideDonationApis(retrofit: Retrofit)
-            : DonationApis = retrofit.create(DonationApis::class.java)
+            : DonationApis = retrofit.create(
+        DonationApis::class.java)
     @Provides
     fun provideDonationRemoteDS(donationApis: DonationApis): DonationRemoteDS =
         DonationRemoteDS(donationApis)

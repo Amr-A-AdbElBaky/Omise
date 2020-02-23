@@ -3,6 +3,7 @@ package com.omise.tamboon.core.di.module
 
 import android.content.Context
 import com.google.gson.Gson
+import com.omise.tamboon.BuildConfig.TAMBOON_BASE_URL
 import com.omise.tamboon.core.application.TamboonApplication
 import com.omise.tamboon.core.data.RxErrorHandlingCallAdapterFactory
 import dagger.Module
@@ -38,8 +39,7 @@ class AppModule {
         return Retrofit.Builder()
 
             .client(okHttpClient)
-            .baseUrl("https://virtserver.swaggerhub.com/")
-          //   .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .baseUrl(TAMBOON_BASE_URL)
             .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

@@ -1,4 +1,4 @@
-package com.omise.tamboon.core.data
+package com.omise.tamboon.base.domain.executors
 
 import io.reactivex.Scheduler
 

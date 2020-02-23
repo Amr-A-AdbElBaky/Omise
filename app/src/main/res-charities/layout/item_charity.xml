@@ -21,20 +21,6 @@
         android:layoutDirection="locale"
         android:layout_margin="16dp">
 
-
-        <!--    <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:background="@drawable/bg_strok"
-                android:padding="8dp"
-                android:paddingStart="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">-->
-
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCharityName"
             android:layout_width="0dp"
@@ -57,7 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/bg_blue_10dp_corners"
+            android:background="@drawable/shape_blue_10dp_corners"
             android:text="@string/label_donate"
             android:gravity="center"
             android:padding="10dp"

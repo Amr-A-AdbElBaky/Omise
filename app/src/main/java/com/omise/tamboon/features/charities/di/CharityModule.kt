@@ -3,8 +3,8 @@ package com.omise.tamboon.features.charities.di
 import androidx.lifecycle.ViewModel
 import com.omise.tamboon.core.di.ViewModelKey
 import com.omise.tamboon.features.charities.data.repository.CharitiesRepositoryImp
-import com.omise.tamboon.features.charities.data.source.CharitiesRemoteDS
-import com.omise.tamboon.features.charities.data.source.api.CharitiesApis
+import com.omise.tamboon.features.charities.data.source.remote.CharitiesRemoteDS
+import com.omise.tamboon.features.charities.data.source.remote.network.CharitiesApis
 import com.omise.tamboon.features.charities.domain.repository.CharitiesRepository
 import com.omise.tamboon.features.charities.presentation.viewmodel.CharitiesViewModel
 import dagger.Binds
